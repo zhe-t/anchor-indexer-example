@@ -1,0 +1,203 @@
+{
+  "address": "8kwhCLtDn37GDLYPWdCTyPSVyi8fUdq5x3X7PhFCnxEV",
+  "metadata": {
+    "name": "indexer_example",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "initialize_game",
+      "discriminator": [
+        44,
+        62,
+        102,
+        247,
+        126,
+        208,
+        130,
+        215
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "player_1",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "player_2"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "make_guess",
+      "discriminator": [
+        59,
+        189,
+        219,
+        87,
+        240,
+        211,
+        125,
+        101
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "writable": true
+        },
+        {
+          "name": "guesser",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "guess",
+          "type": "u8"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "GameData",
+      "discriminator": [
+        237,
+        88,
+        58,
+        243,
+        16,
+        69,
+        238,
+        190
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "GameUpdated",
+      "discriminator": [
+        100,
+        97,
+        130,
+        101,
+        84,
+        101,
+        4,
+        15
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "GameEnded",
+      "msg": "The game has already ended"
+    },
+    {
+      "code": 6001,
+      "name": "NotPlayersTurn",
+      "msg": "It's not your turn to make a guess"
+    }
+  ],
+  "types": [
+    {
+      "name": "GameData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player_1",
+            "type": "pubkey"
+          },
+          {
+            "name": "player_2",
+            "type": "pubkey"
+          },
+          {
+            "name": "secret_number",
+            "type": "u8"
+          },
+          {
+            "name": "current_player",
+            "type": "pubkey"
+          },
+          {
+            "name": "game_state",
+            "type": {
+              "defined": {
+                "name": "GameState"
+              }
+            }
+          },
+          {
+            "name": "winner",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "game",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Ended"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "game",
+            "type": "pubkey"
+          },
+          {
+            "name": "game_state",
+            "type": {
+              "defined": {
+                "name": "GameState"
+              }
+            }
+          },
+          {
+            "name": "current_player",
+            "type": "pubkey"
+          },
+          {
+            "name": "winner",
+            "type": {
+              "option": "pubkey"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

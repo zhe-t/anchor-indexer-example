@@ -1,0 +1,16 @@
+{
+  "name": "anchor-indexer-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build::program": "cd indexer-example && anchor build",
+    "build::sdk": "cd sdk && npm run build",
+    "build": "npm run build::program && npm run build::sdk",
+    "test": "npm run build && cd indexer-example && anchor test",
+    "start::indexer": "cd indexer && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
